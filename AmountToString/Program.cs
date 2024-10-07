@@ -9,7 +9,6 @@ builder.Services.AddControllersWithViews();
 // Register services to the DI container
 builder.Services.AddSingleton<INumberToWordsConverter, NumberToWordsConverter>();
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
