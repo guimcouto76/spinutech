@@ -6,11 +6,17 @@ namespace AmountToString.Services
     {
         public string ConvertAmountToWords(decimal amount)
         {
+            if (amount < 0)
+            {
+                // Handle negative numbers by adding "Minus" at the start
+                return "Minus " + ConvertAmountToWords(Math.Abs(amount));
+            }
+
             var dollars = (long)Math.Floor(amount);
             var cents = (int)((amount - dollars) * 100);
 
             string dollarsInWords = ConvertNumberToWords(dollars);
-            string result = cents > 0 ? $"{dollarsInWords} and {cents:00}/100 dollars" : $"{dollarsInWords} dollars";
+            string result = cents > 0 ? $"{dollarsInWords} and {cents:00}/100 dollars" : dollarsInWords == "one" ? $"{dollarsInWords} dollar" : $"{dollarsInWords} dollars";
 
             return CapitalizeFirstLetter(result);
         }
@@ -43,7 +49,7 @@ namespace AmountToString.Services
 
             if ((number / 100) > 0)
             {
-                words += ConvertNumberToWords(number / 100) + " hundred ";
+                words += ConvertNumberToWords(number / 100) + " hundred";
                 number %= 100;
             }
 
@@ -63,7 +69,7 @@ namespace AmountToString.Services
                 }
             }
 
-            return words;
+            return words.Trim();
         }
 
         private string CapitalizeFirstLetter(string input)
