@@ -1,0 +1,23 @@
+﻿@model AmountToString.Models.AmountModel
+
+
+<div class="container">
+    <h2>Amount to Words Converter</h2>
+
+    <form asp-action="Index" method="post">
+        <div class="form-group">
+            <label for="amount">Enter Amount:</label>
+            <input type="text" name="amount" id="amount" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary mt-1">Convert</button>
+    </form>
+
+    @if (Model != null && !string.IsNullOrEmpty(Model.AmountInWords))
+    {
+        <div class="mt-4">
+            <h3>Result:</h3>
+            <p><strong>Original Number:</strong> @Model.Amount</p>
+            <p><strong>In Words:</strong> @Model.AmountInWords</p>
+        </div>
+    }
+</div>
