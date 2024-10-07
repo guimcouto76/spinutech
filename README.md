@@ -90,6 +90,37 @@ AmountToWordsConverter/
 - **Trillions and beyond**: The application currently supports numbers up to billions. You can extend it to handle higher magnitudes (trillions, quadrillions, quintillions, etc.) by modifying the NumberToWordsConverter.
 - **Localization**: The conversion logic can be adapted for other languages by modifying the number-to-words mapping.
 
+
+## Unit Tests
+The project includes unit tests to ensure that both the NumberToWordsConverter service and the AmountController behave as expected.
+
+### Test Frameworks Used
+- xUnit: A widely used unit testing framework for .NET.
+- Moq: A popular mocking framework for .NET, used to mock dependencies in unit tests (e.g., the INumberToWordsConverter service).
+
+### Test Coverage
+1. NumberToWordsConverter Service Tests:
+    - These tests validate the logic of converting numbers into their word representation.
+    - Key scenarios covered:
+        - Positive numbers
+        - Numbers with decimal values (cents)
+        - Large numbers (up to trillions)
+        - Negative numbers
+
+2. AmountController Tests:
+    - These tests ensure that the controller processes both GET and POST requests correctly and interacts with the INumberToWordsConverter service.
+    - Mocking is used to simulate the behavior of the converter service without testing its implementation.
+
+### How to Run Tests
+To run the unit tests:
+1. Open Visual Studio and navigate to the Test Explorer window.
+2. Click Run All to execute all the tests.
+3. You can also run the tests from the command line using:
+```bash
+dotnet test
+```
+All the tests should pass if the logic is implemented correctly, providing confidence that the service and controller are working as expected.
+
 ## Author
 
 - **Name**: Guilherme Couto
